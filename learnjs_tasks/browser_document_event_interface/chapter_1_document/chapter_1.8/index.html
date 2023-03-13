@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 30px;
+            position: absolute;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .welcome {
+            width: 60px;
+            background: #59c383;
+            color: rgb(0, 244, 8);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- /*
+Создать уведомление
+Напишите функцию showNotification(options), которая создаёт уведомление:
+ <div class="notification"> с заданным содержимым. Уведомление должно
+  автоматически исчезнуть через 1,5 секунды.
+Пример объекта options:
+
+// показывает элемент с текстом "Hello" рядом с правой верхней частью окна.
+showNotification({
+  top: 10, // 10px от верхней границы окна (по умолчанию 0px)
+  right: 10, // 10px от правого края окна (по умолчанию 0px)
+  html: "Hello!", // HTML-уведомление
+  className: "welcome" // дополнительный класс для div (необязательно)
+});
+
+Используйте CSS-позиционирование для отображения элемента в заданных 
+координатах. Исходный документ имеет необходимые стили. */ -->
+    <script>
+let showNotification = ({top = 0,right = 0, html, className}) => {
+    let div = document.createElement('div');
+    div.className = 'notification';
+    div.style.top = `${top}px`;
+    div.style.right = `${right}px`;
+    div.textContent = html;
+    if (className) {
+        div.classList.add(className);
+    }
+    document.body.append(div)
+    setTimeout(() => {div.remove()},1500)
+}
+
+showNotification({
+    top: 10, // 
+    right: 10,
+    html: "Hello!",
+    className: "welcome"
+});
+    </script>
+</body>
+
+</html>

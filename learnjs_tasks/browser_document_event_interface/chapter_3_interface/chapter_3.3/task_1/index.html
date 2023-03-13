@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .slider {
+  border-radius: 5px;
+  background: #E0E0E0;
+  background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+  width: 310px;
+  height: 15px;
+  margin: 5px;
+}
+
+.thumb {
+  width: 10px;
+  height: 25px;
+  border-radius: 3px;
+  position: relative;
+  left: 10px;
+  top: -5px;
+  background: blue;
+  cursor: pointer;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="slider" class="slider">
+    <div class="thumb"></div>
+  </div>
+
+  <script>
+let thumb = slider.querySelector('.thumb');
+
+    thumb.onmousedown = function(event) {
+    event.preventDefault()
+
+  let shiftX = event.clientX - thumb.getBoundingClientRect().left;
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+
+ function onMouseMove(event) {
+   let leftPos = event.clientX - shiftX - slider.getBoundingClientRect().left;
+      if (leftPos < 0) {
+       leftPos = 0;
+    }
+    let rightPos = slider.offsetWidth - thumb.offsetWidth;
+     if (leftPos > rightPos) {
+      leftPos = rightPos;
+    }
+
+    thumb.style.left = leftPos + 'px';
+  }
+        function onMouseUp() {
+    document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('mousemove', onMouseMove);
+  }
+};
+      thumb.ondragstart = function() {
+  return false;
+};
+
+
+  </script>
+
+</body>
+</html>

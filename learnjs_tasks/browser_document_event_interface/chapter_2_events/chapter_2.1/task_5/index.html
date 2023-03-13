@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    .menu ul {
+      display: none;
+    }
+    .menu {
+        display: inline;
+        cursor: pointer;
+    }
+    .menu .btn::before {
+      content: '▶ ';
+    }
+
+    .menu.open .btn::before {
+      content: '▼ ';
+    }
+
+    .menu.open ul {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="menu" class="menu">
+    <span class="btn">Сладости (нажми меня)!</span>
+    <ul>
+      <li>Пирожное</li>
+      <li>Пончик</li>
+      <li>Мёд</li>
+    </ul>
+
+  </div>
+
+  <script>
+    let menu = document.getElementById('menu');
+    let btn = menu.querySelector('.btn');
+
+    btn.onclick = function() {
+        menu.classList.toggle('open');
+    };
+  </script>
+
+</body>
+</html>

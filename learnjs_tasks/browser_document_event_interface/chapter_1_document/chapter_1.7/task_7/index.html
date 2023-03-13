@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createCalendar(elem, year, month) {
+            let table = document.createElement('table');
+            let dayInMonth = new Date(year, month, 0).getDate();
+            let firstDay = new Date(year, month - 1).getDay();
+            let dayOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+
+            let weeks = firstDay == 1 && dayInMonth == 28 ? 4 :
+                firstDay == 0 && (dayInMonth == 31 || dayInMonth == 30) ||
+                firstDay == 6 && dayInMonth == 31 ? 6 : 5;
+
+            for (let i = 0; i <= weeks; i++) {
+                let tr = document.createElement('tr');
+
+                for (let k = 0; k < 7; k++) {
+                    if (i == 0) {
+                        let th = document.createElement('th');
+                        th.textContent = dayOfWeek[k];
+                        tr.append(th);
+                    } else {
+                        let td = document.createElement('td');
+                        tr.append(td);
+                    }
+                }
+                table.append(tr);
+            }
+
+            let tdColl = table.querySelectorAll('td');
+
+            for (let i = firstDay; i < dayInMonth + firstDay; i++) {
+                if (!firstDay) {
+                    tdColl[i + 6].textContent = i - firstDay + 1;
+                } else {
+                    tdColl[i - 1].textContent = i - firstDay + 1;
+                }
+            }
+            elem.append(table);
+        }
+        createCalendar(calendar, 2012, 9);
+    </script>
+</body>
+
+</html>
